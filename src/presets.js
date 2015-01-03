@@ -419,6 +419,33 @@ jfxr.Preset.all = function() {
         return sound;
       }
     }),
+	
+    new jfxr.Preset({
+      name: 'Surf/Wind', 
+      applyTo: function(sound) {
+        var random = this.random;
+        var randomize = this.randomize.bind(this);
+
+        sound.waveform.value = random.fromArray(['whitenoise', 'pinknoise', 'brownnoise']);
+
+		randomize(sound.attack, 0.3, 0.7);
+        
+		randomize(sound.sustain, 0.2, 0.4);
+        
+        randomize(sound.decay, 0.7, 1.5);
+
+        randomize(sound.frequency, 2000, 4000);
+		
+		randomize(sound.interpolateNoise);
+		
+        // if (random.boolean(0.5)) {
+          // randomize(sound.flangerOffset, 0, 10);
+          // randomize(sound.flangerOffsetSweep, -10, 10);
+        // }
+
+        return sound;
+      }
+    }),
   ];
 };
 
